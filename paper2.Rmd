@@ -62,6 +62,7 @@ str(survey)
 ```
 
 Las variables que capturamos demuestran:
+
 - Rendimiento academico
 
 - Competencias
@@ -76,7 +77,7 @@ Las variables que capturamos demuestran:
 
 - soft skills
 
-Para ver mejor nuestras variables podemos un resumen :
+Para ver mejor las variables podemos ver un resumen :
 
 
 ```{r}
@@ -85,6 +86,7 @@ summary(survey)
 ```
 
 # Tratamiento Columnas
+
 Como podemos ver nuestro data set se encuentra con valores nulos, valores vacion, outliers con valores muy grandes. Y tambien podriamos mejorar la presentacion de algunas de las variables como lugar de procedencia por ejemplo.
 
 ### Limpiando columna trabajo_ingeniero_sistemas
@@ -191,7 +193,7 @@ survey$mes_graduacion <- as.factor(survey$mes_graduacion)
 
 table(survey$mes_graduacion)
 ```
-## promedio graduacion
+## Valores nulos promedio_graduacion
 ```{r}
 table(survey$promedio_graduacion)
 ```
@@ -206,9 +208,10 @@ table(survey$promedio_graduacion)
 ```
 
 ## Limpiando nombres de procedencia
+
 Al ser un campo abierto tuvimos problemas en las respuestas
 
-## Limpiando tegucigalpa
+## Limpiando Tegucigalpa
  
 
 ```{r}
@@ -242,7 +245,7 @@ survey$procedencia <- as.factor(survey$procedencia)
 
 ```
 
-### Limpiando el paraiso
+### Limpiando El Paraiso
 
 ```{r}
 
@@ -275,7 +278,7 @@ survey$procedencia <- as.factor(survey$procedencia)
 
 ```
 
-# La Esperanza
+### Limpiando La Esperanza
 ```{r}
 
 la_esperanza <- c("La Esperanza, Intibucá")
@@ -328,6 +331,7 @@ mock_data <- strsplit(mock_data, ",")
 
 survey$tecnologias_unah <- mock_data
 
+head(survey$tecnologias_unah,5)
 
 
 ```
@@ -353,9 +357,11 @@ fuera_unah <-strsplit(fuera_unah, ",")
 
 survey$tecnologias_autodidacta <- fuera_unah
 
+head(survey$tecnologias_autodidacta,5)
+
 ```
 
-## Limpieza de herramientas en la industria
+### Limpieza de herramientas en la industria
 ```{r}
 
 
@@ -379,6 +385,7 @@ data_industria <- strsplit(data_industria, " ")
 
 survey$tecnologias_mercado_laboral <- data_industria
 
+head(survey$tecnologias_mercado_laboral,5)
 
 ```
 
@@ -490,7 +497,7 @@ Segun nuestras encuestas aproximadamente el 2% fueron muejeres. Se necesitaria u
 
 # Analisis Correlacional
 
-En esta seccion estare estudiante las variables de:
+En esta seccion estare estudiando las variables de:
 
 - promedio graduacion
 
@@ -549,7 +556,7 @@ H_A: Las categorias son dependientes
 
 Conclusion: Segun nuestro p-value rechazamos nuestra hipotesis nula, por lo tanto las variables son dependientes 
 
-### trabajo pre graduacion -Genero
+### Trabajo pre graduacion - Genero
 
 ```{r}
 
@@ -806,13 +813,16 @@ fviz_pca_biplot(res, repel = TRUE,
 Viendo la grafica de variables de PCA vemos muy poca correlacion en cuanto a nuestras 3 variables. Se necesitarian más variables númericas por lo que podemos dejar de estudiar estas 3 variables juntas y talvez enfocarnos en diferentes variables. 
 
 # Analisis Explicativo
-```{r}
+```{r include=FALSE, results="hide"}
 require(caret)
 
  survey$tiene.empleo <- "0"
  survey[survey$trabajo_actual == "No", "tiene.empleo"] <- "1"
  
- 
+```
+
+
+```{r}
  prop.table(table(survey$tiene.empleo))
  
  vindependientes <- c(
